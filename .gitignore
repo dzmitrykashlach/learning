@@ -1,0 +1,9 @@
+.idea*
+*.iml
+java-samples/.gradle/**
+java-samples/.gradle/8.5/**
+java-samples/build/**
+kotlin-samples/.gradle/*
+kotlin-samples/.gradle/8.5/
+kotlin-samples/.gradle/8.5/fileHashes/
+kotlin-samples/build/**
