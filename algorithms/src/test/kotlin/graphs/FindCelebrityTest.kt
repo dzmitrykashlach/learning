@@ -1,0 +1,60 @@
+package graphs
+
+import com.algorithms.storehouse.entities.graphs.bfs.celebrity.Person
+import kotlin.test.assertEquals
+import kotlin.test.Test
+
+class FindCelebrityTest {
+    @Test
+    fun findCelebrityTest(){
+        val a = Person("A")
+        val b = Person("B")
+        val c = Person("C")
+        val d = Person("D")
+        val e = Person("E")
+        val f = Person("F-Celebrity")
+        val g = Person("G")
+        val h = Person("H")
+        val i = Person("I")
+        val j = Person("J")
+        val k = Person("K")
+        a.knows.add(f)
+        a.knows.add(b)
+        a.knows.add(h)
+        b.knows.add(f)
+        b.knows.add(c)
+        b.knows.add(d)
+        c.knows.add(f)
+        c.knows.add(g)
+        c.knows.add(i)
+        d.knows.add(f)
+        d.knows.add(e)
+        d.knows.add(k)
+        e.knows.add(f)
+        e.knows.add(a)
+        e.knows.add(d)
+        g.knows.add(f)
+        g.knows.add(j)
+        g.knows.add(b)
+        h.knows.add(a)
+        h.knows.add(b)
+        h.knows.add(c)
+        h.knows.add(d)
+        h.knows.add(e)
+        h.knows.add(g)
+        h.knows.add(i)
+        h.knows.add(j)
+        h.knows.add(k)
+        h.knows.add(f)
+        i.knows.add(f)
+        i.knows.add(d)
+        i.knows.add(k)
+        j.knows.add(f)
+        j.knows.add(a)
+        j.knows.add(d)
+        k.knows.add(f)
+        k.knows.add(e)
+        k.knows.add(h)
+        assertEquals("F-Celebrity",h.findCelebrityBFS().name)
+    }
+}
