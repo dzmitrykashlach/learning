@@ -2,7 +2,6 @@ package com.algorithms.storehouse.logic.tree.huffman
 
 import com.algorithms.storehouse.entities.tree.huffman.CodeTreeNode
 import java.util.*
-import java.util.function.Consumer
 
 /*
 Algorithm description:
@@ -18,24 +17,22 @@ class HuffmanAlgorithm(
         val freqMap = buildFreqMap()
         codesTree = buildCodesTree(freqMap)
         freqMap.keys
-            .forEach(Consumer { c: Char -> codes[c] = codesTree!!.getCodeForCharacter(c, "") })
+            .forEach { c -> codes[c] = codesTree!!.getCodeForCharacter(c, "") }
     }
 
     fun buildFreqMap(): TreeMap<Char, Int> {
         val freqMap = TreeMap<Char, Int>()
-        input.codePoints()
-            .mapToObj { c: Int -> c.toChar() }
-            .forEach { c: Char ->
-                val count = freqMap[c]
-                freqMap[c] = if (count != null) count + 1 else 1
-            }
+        input.forEach { c ->
+            val count = freqMap[c]
+            freqMap[c] = if (count != null) count + 1 else 1
+        }
         return freqMap
     }
 
     fun buildCodesTree(freqMap: TreeMap<Char, Int>): CodeTreeNode {
         val codeTreeNodes = PriorityQueue<CodeTreeNode>()
         freqMap.keys
-            .forEach(Consumer { c: Char -> codeTreeNodes.add(CodeTreeNode(c, freqMap[c]!!)) })
+            .forEach { c -> codeTreeNodes.add(CodeTreeNode(c, freqMap[c]!!)) }
         while (codeTreeNodes.size > 1) {
             val left = codeTreeNodes.poll()
             val right = codeTreeNodes.poll()
@@ -47,9 +44,7 @@ class HuffmanAlgorithm(
 
     fun encode(): String {
         val encoded = StringBuilder()
-        input.codePoints()
-            .mapToObj { c: Int -> c.toChar() }
-            .forEach { c: Char -> encoded.append(codes[c]) }
+        input.forEach { c -> encoded.append(codes[c]) }
         return encoded.toString()
     }
 

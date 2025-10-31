@@ -1,6 +1,6 @@
 package com.algorithms.storehouse.entities.graphs.mst.prim
 
-class Vertex constructor(
+class Vertex(
     val name: String
 ) {
     var visited: Boolean = false

@@ -10,17 +10,17 @@ class AsteroidCollision(private val asteroids: IntArray) {
                 res.push(a) //never collide with any in the stack
             } else {
                 //check collision with all Positive asteroids that have higher asb value from the right
-                while (!res.empty() && res.peek() > 0 && res.peek() < Math.abs(a)) {
+                while (!res.empty() && res.peek() > 0 && res.peek() < kotlin.math.abs(a)) {
                     res.pop() //destroy all a* < a
                 }
                 //Add a if (A has max abs or empty stack or last element is neg)
                 if (res.empty() || res.peek() < 0) {
                     res.push(a)
-                } else if (res.peek() == Math.abs(a)) {
+                } else if (res.peek() == kotlin.math.abs(a)) {
                     res.pop()
                 }
             }
         }
-        return res.stream().mapToInt { i: Int? -> i!! }.toArray() //convert stack to int[]
+        return res.map { it }.toIntArray() //convert stack to int[]
     }
 }

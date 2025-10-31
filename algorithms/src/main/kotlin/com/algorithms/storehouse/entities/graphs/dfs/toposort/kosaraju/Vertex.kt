@@ -1,7 +1,7 @@
 package com.algorithms.storehouse.entities.graphs.dfs.toposort.kosaraju
 
 
-data class Vertex constructor(
+data class Vertex(
     val name: String
 ) {
     var visited: Boolean = false

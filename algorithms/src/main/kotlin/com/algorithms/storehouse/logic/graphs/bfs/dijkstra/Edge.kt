@@ -9,7 +9,7 @@ import lombok.ToString
 @Getter
 @Setter
 @ToString
-class Edge constructor(
+class Edge(
     var weight:Double = 0.0,
     //    private Vertex startVertex;
     var targetDijkstraVertex: DijkstraVertex? = null

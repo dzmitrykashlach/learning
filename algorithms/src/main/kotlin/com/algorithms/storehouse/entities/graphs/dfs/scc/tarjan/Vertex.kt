@@ -3,7 +3,7 @@ package com.algorithms.storehouse.entities.graphs.dfs.scc.tarjan
 import java.util.*
 
 
-data class Vertex constructor(
+data class Vertex(
     val name: String
 ) {
     var visited = false

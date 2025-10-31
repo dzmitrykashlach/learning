@@ -1,7 +1,6 @@
 package com.algorithms.storehouse.logic.streaming
 
 import com.algorithms.storehouse.entities.hashmap.LimitedHashMap
-import java.util.function.Consumer
 
 /*
 https://medium.com/nerd-for-tech/the-streaming-model-and-how-to-estimate-the-most-frequent-elements-with-the-misra-gries-algorithm-c880bbe7218b
@@ -24,7 +23,7 @@ class MisraGries {
                 }
             }
         }
-        summary.keys.forEach(Consumer { a: Int -> println("key " + a + " -> " + summary[a]) })
+        summary.keys.forEach { a -> println("key $a -> ${summary[a]}") }
         return summary
     }
 }

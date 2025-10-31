@@ -18,7 +18,7 @@ TreeMap gives O(log) time complexity and do not deprave performance
 //                    get higher entry in tree after min key
                     val (key, value) = roofCounters.higherEntry(minKey)
                     //                   if we see that min key counter is obviously less efficient - we remove it
-                    if (key - minKey > Math.abs(value - roofCounters[minKey]!!)) {
+                    if (key - minKey > kotlin.math.abs(value - roofCounters[minKey]!!)) {
                         roofCounters.remove(minKey)
                     }
                 }
@@ -30,7 +30,9 @@ TreeMap gives O(log) time complexity and do not deprave performance
         }
         val byKeyValue = Comparator.comparing { (key, value): Map.Entry<Int, Int> -> value - key }
         //        return counter which covers at least required number of cars and has minimal number of empty slots under the roof
-        return roofCounters.entries.stream().filter { (_, value): Map.Entry<Int, Int> -> value >= numRequiredCars }
-            .max(byKeyValue)
+        return Optional.ofNullable(
+            roofCounters.entries.filter { (_, value) -> value >= numRequiredCars }
+                .maxWithOrNull(byKeyValue)
+        )
     }
 }

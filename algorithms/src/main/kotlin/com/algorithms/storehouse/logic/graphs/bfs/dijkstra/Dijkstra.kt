@@ -2,7 +2,6 @@ package com.algorithms.storehouse.logic.graphs.bfs.dijkstra
 
 import lombok.NoArgsConstructor
 import java.util.*
-import java.util.function.Consumer
 
 @NoArgsConstructor
 class Dijkstra {
@@ -16,7 +15,7 @@ class Dijkstra {
         if (!dv.visited) {
             dv.visited = true
             // select local optimum
-            dv.adjacencyList.forEach(Consumer { e: Edge ->
+            dv.adjacencyList.forEach { e ->
                 if (dv.distance + e.weight < e.targetDijkstraVertex?.distance!!) {
                     // update distance for target vertex of each edge if new distance is less
                     e.targetDijkstraVertex?.distance = dv.distance + e.weight
@@ -24,7 +23,7 @@ class Dijkstra {
                     e.targetDijkstraVertex?.predecessor = dv
                 }
                 bfsDijkstra(e.targetDijkstraVertex!!)
-            })
+            }
         }
     }
 

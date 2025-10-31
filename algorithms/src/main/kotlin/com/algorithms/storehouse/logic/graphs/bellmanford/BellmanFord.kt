@@ -3,27 +3,26 @@ package com.algorithms.storehouse.logic.graphs.bellmanford
 import com.algorithms.storehouse.entities.graphs.bellmanford.Vertex
 import com.algorithms.storehouse.entities.graphs.bellmanford.Edge
 import java.util.*
-import java.util.function.Consumer
 
 /*
  Time complexity = O((V-1)*E)
  */
-class BellmanFord constructor(val iterations: Int ) {
+class BellmanFord(val iterations: Int) {
 //    private val iterations = 0
 
     fun calculate(from: Vertex, to: Vertex, edges: List<Edge>): LinkedList<Vertex> {
         from.distance = 0.0
         for (i in 0 until iterations) {
-            edges.forEach(Consumer { e: Edge ->
+            edges.forEach { e ->
                 if (e.startVertex!!.distance + e.weight < e.targetVertex!!.distance) {
                     // update distance for target vertex of each edge if new distance is less
                     e.targetVertex!!.distance = e.startVertex!!.distance + e.weight
                     // update predecessor
                     e.targetVertex!!.predecessor = e.startVertex
                 }
-            })
+            }
         }
-        edges.forEach(Consumer { e: Edge ->
+        edges.forEach { e ->
             if (e.startVertex!!.distance + e.weight < e.targetVertex!!.distance) {
 //                print out negative cycle
                 println("Negative cycle is detected:")
@@ -34,7 +33,7 @@ class BellmanFord constructor(val iterations: Int ) {
                 } while (cycleNode != e.startVertex)
                 throw RuntimeException("Negative cycle is detected")
             }
-        })
+        }
         return extractRoute(to)
     }
 
